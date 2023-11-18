@@ -40,6 +40,8 @@ class MemberServiceTest {
         Member member2 =new Member();
         member2.setName("지웅");
 
+        System.out.println("asdfasdfasdf");
+
         //when
         service.Join(member1); //첫번째 추가
 
