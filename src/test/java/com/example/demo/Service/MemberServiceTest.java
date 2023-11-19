@@ -24,10 +24,10 @@ class MemberServiceTest {
         member.setName("지웅");
 
         //when
-        Long saveId = service.Join(member);
+        Long saveId = service.join(member);
 
         //then
-        Member findMember = service.FindOne(saveId).get();
+        Member findMember = service.findOne(saveId).get();
         assertThat(member).isEqualTo(findMember);
     }
 
@@ -43,10 +43,10 @@ class MemberServiceTest {
         System.out.println("asdfasdfasdf");
 
         //when
-        service.Join(member1); //첫번째 추가
+        service.join(member1); //첫번째 추가
 
         //then
-        IllegalStateException e = Assertions.assertThrows(IllegalStateException.class, () -> service.Join(member2));
+        IllegalStateException e = Assertions.assertThrows(IllegalStateException.class, () -> service.join(member2));
         assertThat(e.getMessage()).isEqualTo("지웅 은 이미 등록된 이름입니다.");
     }
 

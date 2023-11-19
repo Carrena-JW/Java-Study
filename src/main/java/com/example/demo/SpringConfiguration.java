@@ -1,31 +1,44 @@
 package com.example.demo;
 
-import com.example.demo.Repository.JdbcMemberRepository;
-import com.example.demo.Repository.JdbcTemplateMemberRepository;
-import com.example.demo.Repository.MemberRepository;
-import com.example.demo.Repository.MemoryMemberRepository;
+import com.example.demo.Repository.*;
 import com.example.demo.Service.MemberService;
+import com.example.demo.aop.TimeTraceAop;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfiguration {
-    private final DataSource dataSource;
-    public SpringConfiguration(DataSource dataSource) {
-        this.dataSource = dataSource;
+    //    private final DataSource dataSource;
+//    private final EntityManager em;
+//    public SpringConfiguration(DataSource dataSource, EntityManager em) {
+//        this.dataSource = dataSource;
+//        this.em = em;
+//    }
+    private final MemberRepository memberRepository;
+
+    @Autowired
+    public SpringConfiguration(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
     public MemberService MemberService() {
-        return new MemberService(MemberRepository());
+        return new MemberService(memberRepository);
     }
 
     @Bean
-    public MemberRepository MemberRepository() {
-      //  return new JdbcMemberRepository(dataSource);
-//        return new MemoryMemberRepository();
-        return new JdbcTemplateMemberRepository(dataSource);
+    public TimeTraceAop timeTraceAop() {
+        return new TimeTraceAop();
     }
+
+//    @Bean
+//    public MemberRepository MemberRepository()  //  return new JdbcMemberRepository(dataSource);
+////        return new MemoryMemberRepository();
+////        return new JdbcTemplateMemberRepository(dataSource);
+//        return new JpaMemberRepository(em);
+//    }
 }

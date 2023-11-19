@@ -11,26 +11,26 @@ public class MemoryMemberRepository implements MemberRepository {
         _store.clear();
     }
     @Override
-    public Member Save(Member member) {
+    public Member save(Member member) {
         member.setId(_sequence++);
         _store.put(member.getId(), member);
         return  member;
     }
 
     @Override
-    public Optional<Member> FindById(long id) {
+    public Optional<Member> findById(long id) {
         return Optional.ofNullable(_store.get(id));
     }
 
     @Override
-    public Optional<Member> FindByName(String name) {
+    public Optional<Member> findByName(String name) {
         return  _store.values().stream()
                 .filter(member -> member.getName().equals(name))
                 .findAny();
     }
 
     @Override
-    public List<Member> FindAll() {
+    public List<Member> findAll() {
         return new ArrayList<>(_store.values());
     }
 }

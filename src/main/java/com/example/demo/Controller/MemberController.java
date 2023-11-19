@@ -28,14 +28,14 @@ public class MemberController {
         Member member = new Member();
         member.setName(mf.getName());
         System.out.println(mf.getName());
-        memberService.Join(member);
+        memberService.join(member);
         return "redirect:/";
 
     }
 
     @GetMapping("/members")
     public String list(Model model){
-        List<Member> allMembers =   memberService.FindAllMembers();
+        List<Member> allMembers =   memberService.findAllMembers();
         model.addAttribute("members", allMembers);
 
         return "members/memberList";

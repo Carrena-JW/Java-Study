@@ -22,7 +22,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Member Save(Member member) {
+    public Member save(Member member) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("member").usingGeneratedKeyColumns("id");
 
@@ -35,19 +35,19 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> FindById(long id) {
+    public Optional<Member> findById(long id) {
         return jdbcTemplate.query("select * from member where id=?", memberRowMapper(), id)
                 .stream().findFirst();
     }
 
     @Override
-    public Optional<Member> FindByName(String name) {
+    public Optional<Member> findByName(String name) {
         return jdbcTemplate.query("select * from member where name=?", memberRowMapper(), name)
                 .stream().findFirst();
     }
 
     @Override
-    public List<Member> FindAll() {
+    public List<Member> findAll() {
         return jdbcTemplate.query("select * from member", memberRowMapper());
 
     }

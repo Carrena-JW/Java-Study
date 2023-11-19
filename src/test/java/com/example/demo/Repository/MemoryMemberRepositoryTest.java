@@ -20,9 +20,9 @@ public class MemoryMemberRepositoryTest {
         Member member = new Member();
         member.setName("JW");
 
-        _repo.Save(member);
+        _repo.save(member);
 
-        Member result = _repo.FindById(member.getId()).get();
+        Member result = _repo.findById(member.getId()).get();
         assertThat(member).isEqualTo(result);
     }
 
@@ -30,13 +30,13 @@ public class MemoryMemberRepositoryTest {
     public void FindByName(){
         Member member1 = new Member();
         member1.setName("JW1");
-        _repo.Save(member1);
+        _repo.save(member1);
 
         Member member2 = new Member();
         member2.setName("JW2");
-        _repo.Save(member2);
+        _repo.save(member2);
 
-        Member result = _repo.FindByName("JW1").get();
+        Member result = _repo.findByName("JW1").get();
         assertThat(result).isEqualTo(member1);
     }
 
@@ -44,13 +44,13 @@ public class MemoryMemberRepositoryTest {
     public void FindAll(){
         Member member1 = new Member();
         member1.setName("JW1");
-        _repo.Save(member1);
+        _repo.save(member1);
 
         Member member2 = new Member();
         member2.setName("JW2");
-        _repo.Save(member2);
+        _repo.save(member2);
 
-        List<Member> result =  _repo.FindAll();
+        List<Member> result =  _repo.findAll();
         assertThat(result.size()).isEqualTo(2);
     }
 }

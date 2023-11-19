@@ -18,7 +18,7 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Member Save(Member member) {
+    public Member save(Member member) {
         String sql = "insert into member(name) values(?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -44,7 +44,7 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> FindById(long id) {
+    public Optional<Member> findById(long id) {
         String sql = "select * from member where id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -70,7 +70,7 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> FindByName(String name) {
+    public Optional<Member> findByName(String name) {
 
         String sql = "select * from member where name = ?";
         Connection conn = null;
@@ -96,7 +96,7 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
-    public List<Member> FindAll() {
+    public List<Member> findAll() {
         String sql = "select * from member";
         Connection conn = null;
         PreparedStatement pstmt = null;
